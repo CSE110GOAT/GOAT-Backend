@@ -59,6 +59,13 @@ results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedu
 
 #print results
 
+date.pop(0)
+team.pop(0)
+opponent.pop(0)
+location.pop(0)
+time.pop(0)
+results.pop(0)
+
 # Placing the data into a Pandas dataframe
 schedule = pd.DataFrame({
     "Date": date,
@@ -69,6 +76,9 @@ schedule = pd.DataFrame({
     "Results": results
 })
 
+#print schedule
+
+#Writing the data to a file
 json_schedule = schedule.to_json()
-with open('schedule.json', 'w') as outfile:
-    json.dump(json_schedule, outfile)
+with open('schedule.json', 'w') as f:
+    f.write(json_schedule)

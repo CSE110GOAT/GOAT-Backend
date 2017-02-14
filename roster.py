@@ -80,27 +80,31 @@ with open( "roster.json", 'w') as f:
 #NOTE: spacing of height and weight is off due to how it is entered 
 # in the html file
 hAndw_object = soup.select (".height")
-hAndw_string = [h.get_text() for h in hAndw_object]
+for h in hAndw_object:
+    hAndw_string.append(h.get_text())
 print '\n'.join(hAndw_string)
 """
 
 """
 #positions_string is a list of positions
 positions_object = soup.select (".position .data")
-positions_string = [p.get_text() for p in positions_object]
+for p in positions_object:
+    positions_string.append(p.get_text())
 print '\n'.join(positions_string)
 """
 
 """
 #years_string is a list of years
 years_object = soup.select (".year .data")
-years_string = [y.get_text() for y in years_object]
+for y in years_object:
+    years_string.append(y.get_text())
 print '\n'.join (years_string)
 """
 
 """
 #hometowns_string is a list of player hometowns
 hometowns_object = soup.select (".hometown .data")
-hometowns_string = [h.get_text() for h in hometowns_object]
+for h in hometowns_object:
+    hometowns_string.append(h.get_text())
 print '\n'.join(hometowns_string)
 """

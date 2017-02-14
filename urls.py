@@ -40,6 +40,7 @@ sys.setdefaultencoding('utf-8')
 # 22 -- women's water polo
 
 roster_urls = []
+<<<<<<< HEAD
 
 # men's baseball
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?&DB_OEM_ID=5800&SPID=2331&SPSID=29814")
@@ -63,3 +64,24 @@ roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2328&SPSID=29741&DB_OEM_ID=5800")
 
 news_urls = []
+=======
+
+
+news_urls = []
+
+# men's baseball
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29805&SPID=2331&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's basketball
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29884&SPID=2337&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's cross country
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's fencing
+news_urls.append(
+
+
+
+
+>>>>>>> f3a37f773abdf0fa5c81e0107207aff53f8ceba1

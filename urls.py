@@ -167,6 +167,3 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31804&SPID
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31805&SPID=2549&DB_LANG=C&DB_OEM_ID=5800")
 
 
->>>>>>> f3a37f773abdf0fa5c81e0107207aff53f8ceba1
-=======
->>>>>>> 24c66578ca40c88d370315dd079479216b10bc00

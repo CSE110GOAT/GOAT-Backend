@@ -1,6 +1,6 @@
 #Author: Brian Han
 # Date: 2/13/17
-# My attempt to get the baseball roster list, the pics.
+# My attempt to parse all the rosters
 
 import requests
 from bs4 import BeautifulSoup

@@ -1,24 +1,18 @@
 #Author: Brian Han
-# Date: 2/11/17
+# Date: 2/13/17
 # My attempt to get the baseball roster list, the pics.
 
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import io
+import json
 
+#Page for the baseball team
 page = requests.get ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2331&SPSID=29814&DB_OEM_ID=5800")
+#Page for the basketball team
+#page = requests.get("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
 soup = BeautifulSoup(page.content, 'html.parser')
-
-#
-#for roster in body:
-#    print roster
-#
-
-#Important tags:
-#class_= player-name
-# in the "a" tag , you can get the name and the html link
-# under the "a" tag is an img of the person
-
 
 #players_string is a list of player names
 players_object = soup.select (".player-name a")
@@ -49,6 +43,11 @@ players = pd.DataFrame ({
     })
 
 print players
+
+#Converting the dataframe to a json file
+players_json = players.to_json()
+with open( "roster.json", 'w') as f:
+        f.write( players_json)
 
 """
 #hAndw_string is a list of player heights AND weights

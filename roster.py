@@ -8,32 +8,58 @@ import pandas as pd
 import io
 import json
 
-#Page for the baseball team
-page = requests.get ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2331&SPSID=29814&DB_OEM_ID=5800")
-#Page for the basketball team
-#page = requests.get("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
-soup = BeautifulSoup(page.content, 'html.parser')
-
-#players_string is a list of player names
-players_object = soup.select (".player-name a")
-players_string = [p.get_text() for p in players_object]
-#print '\n'.join(players_string)
-
+sports = []
 
 #players_images is a list of player image links; note that there are
-#13 images missing for baseball, they have a "no image available" image
 players_images = []
-for s in players_string:
-    temp = soup.find("img", {"alt":s})
-    players_images.append(temp["src"])
-#print '\n'.join(players_images)
+
+#players_string is a list of player names
+players_string = []
 
 #bio_links is a list of player bio links.
 bio_links = []
-prefix = "www.ucsdtritons.com"
-for s in players_string:
-    temp = soup.find("a", {"title":s})
-    bio_links.append(prefix + temp["href"])
+
+#Baseball page
+sports.append ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2331&SPSID=29814&DB_OEM_ID=5800")
+
+#Basketball page
+sports.append ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
+
+#Cross Country page
+sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
+
+#Men's Golf page
+sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2343&SPSID=29952&DB_OEM_ID=5800")
+
+#"Men's Rowing" page
+sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=29862&DB_OEM_ID=5800")
+
+#Men's Soccer page
+sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=29862&DB_OEM_ID=5800")
+
+for sport in sports:
+    page = requests.get(sport)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    players_object = soup.select (".player-name a")
+
+    #Holds the strings for this specific sport on this iteration
+    temp_string = []
+    for s in players_object:
+        players_string.append (s.get_text())
+        temp_string.append(s.get_text())
+#print '\n'.join(players_string)
+
+    for s in temp_string:
+        temp = soup.find("img", {"alt":s})
+        players_images.append(temp["src"])
+#print '\n'.join(players_images)
+
+#bio_links is a list of player bio links.
+    prefix = "www.ucsdtritons.com"
+    for s in temp_string:
+        temp = soup.find("a", {"title":s})
+        bio_links.append(prefix + temp["href"])
 #print '\n'.join(bio_links)
 
 players = pd.DataFrame ({

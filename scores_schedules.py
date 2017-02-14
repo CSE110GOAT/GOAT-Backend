@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import io, json
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -58,17 +59,7 @@ results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedu
 
 #print results
 
-
-
-#date = dataset.find(class_="team").get_text()
-#print date
-#for dataset in datasets:
-#    for field in dataset:
-        #print "{0:<16}: {1}".format(field[0], field[1])
-#print headings
-
-
-
+# Placing the data into a Pandas dataframe
 schedule = pd.DataFrame({
     "Date": date,
     "Team": team,
@@ -77,4 +68,7 @@ schedule = pd.DataFrame({
     "Time (PST)": time,
     "Results": results
 })
-print schedule
+
+json_schedule = schedule.to_json()
+with open('schedule.json', 'w') as outfile:
+    json.dump(json_schedule, outfile)

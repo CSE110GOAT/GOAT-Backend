@@ -4,6 +4,7 @@
 
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 page = requests.get ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2331&SPSID=29814&DB_OEM_ID=5800")
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -22,7 +23,7 @@ soup = BeautifulSoup(page.content, 'html.parser')
 #players_string is a list of player names
 players_object = soup.select (".player-name a")
 players_string = [p.get_text() for p in players_object]
-print '\n'.join(players_string)
+#print '\n'.join(players_string)
 
 
 #players_images is a list of player image links; note that there are
@@ -31,7 +32,7 @@ players_images = []
 for s in players_string:
     temp = soup.find("img", {"alt":s})
     players_images.append(temp["src"])
-print '\n'.join(players_images)
+#print '\n'.join(players_images)
 
 #bio_links is a list of player bio links.
 bio_links = []
@@ -39,7 +40,15 @@ prefix = "www.ucsdtritons.com"
 for s in players_string:
     temp = soup.find("a", {"title":s})
     bio_links.append(prefix + temp["href"])
-print '\n'.join(bio_links)
+#print '\n'.join(bio_links)
+
+players = pd.DataFrame ({
+        "player": players_string,
+        "image" : players_images,
+        "link to bio": bio_links
+    })
+
+print players
 
 """
 #hAndw_string is a list of player heights AND weights

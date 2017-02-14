@@ -1,4 +1,4 @@
-# arrays for urls
+#arrays for urls
 
 import requests
 from bs4 import BeautifulSoup
@@ -40,5 +40,26 @@ sys.setdefaultencoding('utf-8')
 # 22 -- women's water polo
 
 roster_urls = []
-news_urls = []
 
+# men's baseball
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?&DB_OEM_ID=5800&SPID=2331&SPSID=29814")
+
+# men's basketball
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
+
+# men's cross country
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
+
+# men's fencing
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11061&SPSID=93259&DB_OEM_ID=5800")
+
+# men's golf
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2343&SPSID=29952&DB_OEM_ID=5800")
+
+# men's rowing
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=29862&DB_OEM_ID=5800") 
+
+# men's soccer 
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2328&SPSID=29741&DB_OEM_ID=5800")
+
+news_urls = []

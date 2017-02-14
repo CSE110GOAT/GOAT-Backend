@@ -40,33 +40,60 @@ sys.setdefaultencoding('utf-8')
 # 22 -- women's water polo
 
 roster_urls = []
-<<<<<<< HEAD
 
-# men's baseball
+# MEN'S 
+# baseball
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?&DB_OEM_ID=5800&SPID=2331&SPSID=29814")
-
-# men's basketball
+#  basketball
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
-
-# men's cross country
+# cross country
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
-
-# men's fencing
+# fencing
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11061&SPSID=93259&DB_OEM_ID=5800")
-
-# men's golf
+# golf
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2343&SPSID=29952&DB_OEM_ID=5800")
-
-# men's rowing
+# rowing
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=29862&DB_OEM_ID=5800") 
-
-# men's soccer 
+# soccer 
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2328&SPSID=29741&DB_OEM_ID=5800")
+# swimming and diving
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11062&SPSID=93268&DB_OEM_ID=5800")
+# tennis
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2345&SPSID=29969&DB_OEM_ID=5800")
+# track and field
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11064&SPSID=93289&DB_OEM_ID=5800")
+# volleyball
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2336&SPSID=29874&DB_OEM_ID=5800")
+# water polo
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2548&SPSID=31939&DB_OEM_ID=5800")
 
-news_urls = []
-=======
+
+# WOMEN'S
+# basketball
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2338&SPSID=29897&DB_OEM_ID=5800")
+# cross country
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
+# fencing
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11061&SPSID=93259&DB_OEM_ID=5800") 
+# rowing
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2327&SPSID=29722&DB_OEM_ID=5800")
+# soccer
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2339&SPSID=29910&DB_OEM_ID=5800")
+# softball
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2342&SPSID=29938&DB_OEM_ID=5800")
+# swimming and diving
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11062&SPSID=93268&DB_OEM_ID=5800")
+# tennis
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2332&SPSID=29818&DB_OEM_ID=5800")
+# track and field
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11064&SPSID=93289&DB_OEM_ID=5800")
+# volleyball
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2334&SPSID=31943&DB_OEM_ID=5800")
+# water polo
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2549&SPSID=31947&DB_OEM_ID=5800")
 
 
+# men's 
 news_urls = []
 
 # men's baseball
@@ -81,7 +108,3 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID
 # men's fencing
 news_urls.append(
 
-
-
-
->>>>>>> f3a37f773abdf0fa5c81e0107207aff53f8ceba1

@@ -79,9 +79,64 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29884&SPID
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800")
 
 # men's fencing
-news_urls.append(
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93257&SPID=11061&DB_LANG=C&DB_OEM_ID=5800")
 
+# men's golf
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29950&SPID=2343&DB_LANG=C&DB_OEM_ID=5800")
 
+# men's rowing
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29864&SPID=2335&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's soccer
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29738&SPID=2328&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's swimming and diving
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93266&SPID=11062&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's tennis
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29965&SPID=2345&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's track and field
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93286&SPID=11064&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's volleyball
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29871&SPID=2336&DB_LANG=C&DB_OEM_ID=5800")
+
+# men's water polo
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31803&SPID=2548&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's basketball
+nwews_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29894&SPID=2338&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's cross country
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's fencing
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93257&SPID=11061&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's rowing
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29716&SPID=2327&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's soccer
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29908&SPID=2339&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's softball
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29935&SPID=2342&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's swimming and diving
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93266&SPID=11062&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's tennis
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29816&SPID=2332&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's track and field
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93286&SPID=11064&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's volleyball
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31804&SPID=2334&DB_LANG=C&DB_OEM_ID=5800")
+
+# women's water polo
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31805&SPID=2549&DB_LANG=C&DB_OEM_ID=5800")
 
 
 >>>>>>> f3a37f773abdf0fa5c81e0107207aff53f8ceba1

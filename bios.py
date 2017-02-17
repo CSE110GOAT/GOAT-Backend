@@ -17,5 +17,4 @@ page = requests.get("http://www.ucsdtritons.com/ViewArticle.dbml?ATCLID=20582438
 soup = BeautifulSoup(page.content, 'html.parser')
 page.status_code
 
-
-print(soup.prettify())
+print(soup.prettify())  

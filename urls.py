@@ -108,7 +108,7 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID
 # men's fencing
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93257&SPID=11061&DB_LANG=C&DB_OEM_ID=5800")
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 # men's golf
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29950&SPID=2343&DB_LANG=C&DB_OEM_ID=5800")
 

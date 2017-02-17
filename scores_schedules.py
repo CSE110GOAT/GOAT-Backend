@@ -59,6 +59,7 @@ results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedu
 
 #print results
 
+# Removing the header row scraping
 date.pop(0)
 team.pop(0)
 opponent.pop(0)

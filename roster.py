@@ -1,43 +1,38 @@
 #Author: Brian Han
-# Date: 2/13/17
+# Date: 2/17/17
 # My attempt to parse all the rosters
+# The code creates a list, rosters, that at each index is a list of lists
+# that corresponds to the sport index.
+# Breakdown:
+#      rosters [0][0] = list of player names for that sport
+#      rosters [0][1] = list of player images for that sport
+#      rosters [0][2] = list of player biography links for that sport
 
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import io
 import json
+from urls import roster_urls
 
+
+#list of all the sports urls
 sports = []
+sports = roster_urls
 
-#players_images is a list of player image links; note that there are
-players_images = []
-
-#players_string is a list of player names
-players_string = []
-
-#bio_links is a list of player bio links.
-bio_links = []
-
-#Baseball page
-sports.append ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2331&SPSID=29814&DB_OEM_ID=5800")
-
-#Basketball page
-sports.append ("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
-
-#Cross Country page
-sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
-
-#Men's Golf page
-sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2343&SPSID=29952&DB_OEM_ID=5800")
-
-#"Men's Rowing" page
-sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=29862&DB_OEM_ID=5800")
-
-#Men's Soccer page
-sports.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2335&SPSID=29862&DB_OEM_ID=5800")
+#The actual list of rosters
+rosters = []
 
 for sport in sports:
+    #players_images is a list of player image links; note that there are
+    players_images = []
+
+    #players_string is a list of player names
+    players_string = []
+
+    #bio_links is a list of player bio links.
+    bio_links = []
+
     page = requests.get(sport)
     soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -62,10 +57,18 @@ for sport in sports:
         bio_links.append(prefix + temp["href"])
 #print '\n'.join(bio_links)
 
+#I be tryin
+    rosters.append ([players_string, players_images, bio_links])
+    """
 players = pd.DataFrame ({
         "player": players_string,
         "image" : players_images,
         "link to bio": bio_links
+    })
+"""
+
+players = pd.DataFrame ({
+        "rosters": rosters
     })
 
 print players

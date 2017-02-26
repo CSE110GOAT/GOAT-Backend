@@ -2,15 +2,24 @@
 # Date: 2/26/17
 # My attempt to parse all the rosters
 # The code creates a list, rosters, that at each index has a sublist of 
-# lists, where each list element in the sublist has a player name, image link,
-# article link
+# lists, where each list element in the sublist has a:
+# player name, player height and weight, player position, player year, player
+# hometown, player image link, and player bio link
 #
 # Breakdown:
-#      rosters [0] = list of [player name, image link, article link]'s
-#      rosters [0][0] = first [player name, image link, article link] at ID 0
+#      rosters [0] = list of [player name, player height and weight,
+#                             player position, player year, player hometown,
+#                             player image link, player bio link]'s
+#      rosters [0][0] = first [player name, player height and weight,
+#                             player position, player year, player hometown,
+#                             player image link, player bio link] at ID 0
 #      rosters [0][0][0] = first player name at ID 0 
-#      rosters [0][0][1] = first image link at ID 0
-#      rosters [0][0][2] = first article link at ID 0
+#      rosters [0][0][1] = first player height and weight at ID 0 
+#      rosters [0][0][2] = first player position at ID 0 
+#      rosters [0][0][3] = first player year at ID 0 
+#      rosters [0][0][4] = first player hometown at ID 0 
+#      rosters [0][0][5] = first image link at ID 0
+#      rosters [0][0][6] = first article link at ID 0
 
 import requests
 from bs4 import BeautifulSoup
@@ -30,13 +39,13 @@ rosters = []
 for sport in sports:
 
     #players_string is a list of player names
-    players_string = []
+    players_strings = []
 
     #players_hAndw is a list of player height and weight
-    players_hAndw = []
+    players_hAndws = []
 
     #players_position is a list of player positions
-    players_position = []
+    players_positions = []
 
     #players_years is a list of player years
     players_years = []
@@ -57,30 +66,28 @@ for sport in sports:
     players_object = soup.select (".player-name a")
 
     #players_string holds the strings for this specific sport on this iteration
-    temp_string = []
+    temp_strings = []
     for s in players_object:
-        players_string.append (s.get_text())
-        temp_string.append(s.get_text())
+        players_strings.append (s.get_text())
+        temp_strings.append(s.get_text())
 
     #hAndw_string is a list of player heights AND weights
-    #NOTE: spacing of height and weight is off due to how it is entered 
-    # in the html file
     hAndw_object = soup.select (".height")
     if len (hAndw_object) != 0:
         for h in hAndw_object:
-            players_hAndw.append(h.get_text())
+            players_hAndws.append(h.get_text())
     else :
-        for s in temp_string:
-            players_hAndw.append ("")
+        for s in temp_strings:
+            players_hAndws.append ("")
         
     #positions_string is a list of positions
     positions_object = soup.select (".position .data")
     if len (positions_object) != 0:
         for p in positions_object:
-            players_position.append(p.get_text())
+            players_positions.append(p.get_text())
     else :
-        for s in temp_string:
-            players_position.append ("")
+        for s in temp_strings:
+            players_positions.append ("")
 
     #player_years is a list of years
     years_object = soup.select (".year .data")
@@ -88,7 +95,7 @@ for sport in sports:
         for y in years_object:
             players_years.append(y.get_text())
     else :
-        for s in temp_string:
+        for s in temp_strings:
             players_years.append ("")
 
     #players_hometowns is a list of player hometowns
@@ -97,33 +104,29 @@ for sport in sports:
         for h in hometowns_object:
             players_hometowns.append(h.get_text())
     else :
-        for s in temp_string:
+        for s in temp_strings:
             players_hometowns.append ("")
 
     #players_images is a list of player images
-    for s in temp_string:
+    for s in temp_strings:
         temp = soup.find("img", {"alt":s})
         players_images.append(temp["src"])
 
 
     #bio_links is a list of player bio links.
     prefix = "www.ucsdtritons.com"
-    for s in temp_string:
+    for s in temp_strings:
         temp = soup.find("a", {"title":s})
         bio_links.append(prefix + temp["href"])
-
-#Debug statement
-#print '\n'.join(bio_links)
 
     #Creates a temp list of player names, player images, bio links
     # for each sport, and then adds it to the player ID index
     temp = []
-    for index in xrange (len(players_string)):
-        print players_hAndw[index].replace("\n","").replace("\t","").replace("\\", "")
+    for index in xrange (len(players_strings)):
         temp.append([
-                players_string[index],
-                players_hAndw[index].replace("\n","").replace("\t","").replace("\\", ""),
-                players_position [index],
+                players_strings[index],
+                players_hAndws[index].replace("\n","").replace("\t","").replace("\\", ""),
+                players_positions [index],
                 players_years[index],
                 players_hometowns[index].replace("\n","").replace("\t",""),
                 players_images [index],
@@ -148,40 +151,3 @@ print rosters[0][0][2]
 players_json = players.to_json()
 with open( "roster.json", 'w') as f:
         f.write( players_json)
-
-
-#Other information you can access on the roster page;
-#Uncomment and add it into the loop to scrap it
-"""
-#hAndw_string is a list of player heights AND weights
-#NOTE: spacing of height and weight is off due to how it is entered 
-# in the html file
-hAndw_object = soup.select (".height")
-for h in hAndw_object:
-    hAndw_string.append(h.get_text())
-print '\n'.join(hAndw_string)
-"""
-
-"""
-#positions_string is a list of positions
-positions_object = soup.select (".position .data")
-for p in positions_object:
-    positions_string.append(p.get_text())
-print '\n'.join(positions_string)
-"""
-
-"""
-#years_string is a list of years
-years_object = soup.select (".year .data")
-for y in years_object:
-    years_string.append(y.get_text())
-print '\n'.join (years_string)
-"""
-
-"""
-#hometowns_string is a list of player hometowns
-hometowns_object = soup.select (".hometown .data")
-for h in hometowns_object:
-    hometowns_string.append(h.get_text())
-print '\n'.join(hometowns_string)
-"""

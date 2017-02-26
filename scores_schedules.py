@@ -59,7 +59,6 @@ results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedu
 
 #print results
 
-# Removing the header row scraping
 date.pop(0)
 team.pop(0)
 opponent.pop(0)
@@ -67,6 +66,16 @@ location.pop(0)
 time.pop(0)
 results.pop(0)
 
+# Grouping the information based on each game and not on date/team/opponent/location/time/results
+games = []
+for i in range (len(date)):
+    games.append([date[i], team[i], opponent[i], location[i], time[i], results[i]])
+
+schedule = pd.DataFrame({
+    "Games": games
+})
+
+'''
 # Placing the data into a Pandas dataframe
 schedule = pd.DataFrame({
     "Date": date,
@@ -76,7 +85,7 @@ schedule = pd.DataFrame({
     "Time (PST)": time,
     "Results": results
 })
-
+'''
 #print schedule
 
 #Writing the data to a file

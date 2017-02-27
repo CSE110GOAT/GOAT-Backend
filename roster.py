@@ -26,6 +26,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import io
 import json
+import urllib2
 from urls import roster_urls
 
 
@@ -33,8 +34,12 @@ from urls import roster_urls
 sports = []
 sports = roster_urls
 
+#Index of sport being accessed
+sportIndex = 0
+
 #The actual list of rosters
 rosters = []
+
 
 for sport in sports:
 
@@ -131,7 +136,16 @@ for sport in sports:
                 players_hometowns[index].replace("\n","").replace("\t",""),
                 players_images [index],
                 bio_links[index]])
+
+        # puts image into directory and downloads the image
+        # for example, the first baseball player image  would be at ./rosters/0/0.jpg , 'wb' means write in binary 
+        with open( "./rosters/"+ str(sportIndex) + "/" + str(index) +".jpg", 'wb' ) as out_file:
+            img = urllib2.urlopen(players_images[index])
+            out_file.write( img.read() )
+            out_file.close()
     rosters.append (temp)
+
+    sportIndex += 1
 
 #Formats the Dataframe in Panda
 players = pd.DataFrame ({

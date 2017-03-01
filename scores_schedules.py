@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf-8')
 
 
 
-page = requests.get("http://www.ucsdtritons.com/main/Schedule.dbml?DB_LANG=C&&DB_OEM_ID=5800")
+page = requests.get("http://www.ucsdtritons.com/main/Schedule.dbml?DB_OEM_ID=5800&PAGEMO=-1&PAGEDIR=1")
 soup = BeautifulSoup(page.content, 'html.parser')
 page.status_code
 
@@ -58,6 +58,21 @@ results_tag = scores_schedule.select(".results")
 results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
 
 #print results
+
+# Scraping the recap
+prefix = "www.ucsdtritons.com"
+recap_tag = scores_schedule.select(".gray-drop a")
+recap = []
+#print recap_tag
+for ret in recap_tag:
+    #print ret.get_text()
+    #print ret
+    if ret.has_attr('href') and 'Recap' in ret.get_text():
+        recap.append(prefix + ret['href'])
+        print recap[len(recap)-1]
+
+
+
 
 date.pop(0)
 team.pop(0)

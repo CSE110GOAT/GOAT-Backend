@@ -40,6 +40,8 @@ sys.setdefaultencoding('utf-8')
 # 22 -- women's water polo
 
 roster_urls = []
+news_urls = []
+stats = []
 
 # MEN'S 
 # baseball
@@ -93,7 +95,6 @@ roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2334&SPSID=
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2549&SPSID=31947&DB_OEM_ID=5800")
 
 
-news_urls = []
 
 # MEN'S
 # baseball
@@ -146,3 +147,49 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31804&SPID
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31805&SPID=2549&DB_LANG=C&DB_OEM_ID=5800")
 
 
+# 0 -- men's baseball
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/baseball/2017/teamstat.htm?DB_OEM_ID=5800");
+# 1 -- men's basketball
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/mbasketball/2016-17/teamstat.htm?DB_OEM_ID=5800");
+# 2 -- men's cross country
+stats.append("");
+# 3 -- men's fencing
+stats.append("");
+# 4 -- men's golf
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/mgolf/2016-17/teamstat.htm?DB_OEM_ID=5800");
+# 5 -- men's rowing
+stats.append("");
+# 6 -- men's soccer
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/msoccer/2016/teamstat.htm?DB_OEM_ID=5800");
+# 7 -- men's swimming and diving
+stats.append("");
+# 8 -- men's tennis
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/mtennis/2017/teamstat.htm?&DB_OEM_ID=5800");
+# 9 -- men's track and field
+stats.append("");
+# 10 -- men's volleyball
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/mvolleyball/2017/teamstat.htm?DB_OEM_ID=5800");
+# 11 -- men's water polo
+stats.append("http://www.ucsdtritons.com/ViewArticle.dbml?DB_OEM_ID=5800&ATCLID=205687919&DB_OEM_ID=5800");
+# 12 -- women's basketball
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/wbasketball/2016-17/teamstat.htm?DB_OEM_ID=5800");
+# 13 -- women's cross country
+stats.append("");
+# 14 -- women's fencing
+stats.append("");
+# 15 -- women's rowing
+stats.append("");
+# 16 -- women's soccer
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/wsoccer/2016/teamstat.htm?DB_OEM_ID=5800");
+# 17 -- women's softball
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/softball/2017/teamstat.htm?DB_OEM_ID=5800");
+# 18 -- women's swimming and diving
+stats.append("");
+# 19 -- women's tennis
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/wtennis/2017/teamstat.htm?DB_OEM_ID=5800");
+# 20 -- women's track and field 
+stats.append("");
+# 21 -- women's volleyball
+stats.append("http://www.ucsdtritons.com/fls/5800/stats/wvolleyball/2016/teamstat.htm?DB_OEM_ID=5800");
+# 22 -- women's water polo
+stats.append("http://www.ucsdtritons.com/ViewArticle.dbml?&DB_OEM_ID=5800&ATCLID=211423801");

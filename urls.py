@@ -49,7 +49,7 @@ roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?&DB_OEM_ID=5800&
 #  basketball
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2337&SPSID=29887&DB_OEM_ID=5800")
 # cross country
-roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?DB_OEM_ID=5800&SPID=11063&SPSID=93276&KEY=&Q_SEASON=2015")
 # fencing
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11061&SPSID=93259&DB_OEM_ID=5800")
 # golf
@@ -74,7 +74,7 @@ roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2548&SPSID=
 # basketball
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2338&SPSID=29897&DB_OEM_ID=5800")
 # cross country
-roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11063&SPSID=93276&DB_OEM_ID=5800")
+roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?DB_OEM_ID=5800&SPID=11063&SPSID=93276&KEY=&Q_SEASON=2015")
 # fencing
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=11061&SPSID=93259&DB_OEM_ID=5800") 
 # rowing

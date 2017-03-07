@@ -37,6 +37,7 @@ sports = roster_urls
 #Index of sport being accessed
 sportIndex = 0
 
+
 #The actual list of rosters
 rosters = []
 
@@ -138,8 +139,9 @@ for sport in sports:
                 bio_links[index]])
 
         # puts image into directory and downloads the image
-        # for example, the first baseball player image  would be at ./rosters/0/0.jpg , 'wb' means write in binary 
-        with open( "./rosters/"+ str(sportIndex) + "/" + str(index) +".jpg", 'wb' ) as out_file:
+        # for example, the first baseball player image  would be at
+# ./rosters/0/0.png , 'wb' means write in binary 
+        with open( "./rosters/"+ str(sportIndex) + "/" + str(index) +".png", 'wb' ) as out_file:
             img = urllib2.urlopen(players_images[index])
             out_file.write( img.read() )
             out_file.close()

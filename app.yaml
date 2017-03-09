@@ -1,9 +1,7 @@
 runtime: python27
 api_version: 1
-threadsafe: true
+threadsafe: yes
 
 handlers:
 - url: /
-  static_dir: /
-  expiration: 1d
-  secure: always
+  static_dir: ./

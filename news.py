@@ -7,10 +7,11 @@
 # Each slot in the over all array is a sport
 # Each sport has 2 arrays
 
+import sys
+sys.path.insert(0, './lib')
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import sys
 import os
 import io
 import json

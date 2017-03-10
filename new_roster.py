@@ -21,6 +21,8 @@
 #      rosters [0][0][5] = first image link at ID 0
 #      rosters [0][0][6] = first article link at ID 0
 
+import sys
+sys.path.insert(0, './lib')
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

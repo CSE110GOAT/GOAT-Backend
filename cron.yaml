@@ -1,5 +1,5 @@
 cron:
 - description: daily summary job
-  url: ./news.py
+  url: /news.py
   target: beta
   schedule: every 24 hours

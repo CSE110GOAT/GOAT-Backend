@@ -108,5 +108,5 @@ articles = pd.DataFrame({
 
 #Writing the data to a file
 json_articles = articles.to_json()
-with open('./static/nstatic/ews/articles.json', 'w+') as f:
+with open('./static/news.json', 'w+') as f:
     f.write(json_articles)

@@ -168,5 +168,5 @@ print rosters[0][0][2]
 
 #Converting the dataframe to a json file
 players_json = players.to_json()
-with open( "./rosters/roster.json", 'w+') as f:
+with open( "./static/rosters.json", 'w+') as f:
         f.write( players_json)

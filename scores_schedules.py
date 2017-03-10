@@ -131,5 +131,5 @@ schedule = pd.DataFrame({
 
 #Writing the data to a file
 json_schedule = schedule.to_json()
-with open('schedule.json', 'w') as f:
+with open('./static/schedule.json', 'w') as f:
     f.write(json_schedule)

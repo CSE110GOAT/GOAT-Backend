@@ -46,6 +46,8 @@ menOffset = 3
 rosters = []
 
 #The indexes where there are men/women separation
+# The indexes 2,3,7,9 are for men pages,
+# The indexes 13,14,18,20 are for women pages.
 MenWomen = [2, 3, 7, 9, 13, 14, 18, 20 ] 
 
 for sport in xrange(len(sports)):
@@ -75,7 +77,8 @@ for sport in xrange(len(sports)):
     page = requests.get(sports[sport])
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    # Logic to find the men/women index, if required
+    # Logic to find the men/women index, IF required
+    # Checks if the sport index is in MenWomen list
     if (sport in MenWomen):
         players_object = soup.find (id="roster-grid-layout")
         players = players_object.contents
@@ -92,6 +95,7 @@ for sport in xrange(len(sports)):
                 menIndex = index - menOffset
                 break
 
+    #Players objects has all the list objects
     players_object = soup.select (".player-name a")
 
     #players_string holds the strings for this specific sport on this iteration

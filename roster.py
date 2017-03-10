@@ -143,7 +143,7 @@ for sport in sports:
         # for example, the first baseball player image  would be at
 # ./rosters/0/0.png , 'wb' means write in binary 
     	if not os.path.exists("./static/rosters/"+str(sportIndex)):
-	    os.makedirs("./static/rosters/"+str(sportIndex)) 
+	        os.makedirs("./static/rosters/"+str(sportIndex)) 
         with open( "./static/rosters/"+ str(sportIndex) + "/" + str(index) +".png", 'wb+' ) as out_file:
             img = urllib2.urlopen(players_images[index])
             out_file.write( img.read() )

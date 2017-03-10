@@ -102,7 +102,7 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29805&SPID
 # basketball
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29884&SPID=2337&DB_LANG=C&DB_OEM_ID=5800")
 # cross country
-news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800")
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800&Q_SEASON=2016&U_SPSID=N")
 # fencing
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93257&SPID=11061&DB_LANG=C&DB_OEM_ID=5800")
 # golf
@@ -126,7 +126,7 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31803&SPID
 # basketball
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29894&SPID=2338&DB_LANG=C&DB_OEM_ID=5800")
 # cross country
-news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800")
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93275&SPID=11063&DB_LANG=C&DB_OEM_ID=5800&Q_SEASON=2016&U_SPSID=N")
 # fencing
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93257&SPID=11061&DB_LANG=C&DB_OEM_ID=5800")
 # rowing

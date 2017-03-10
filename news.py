@@ -11,11 +11,14 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import sys
+import os
 import io
 import json
 from urls import news_urls
 import urllib2
 
+if not os.path.exists("./news"):
+    os.makedirs("./news") 
 news = []
 dataframes = []
 
@@ -68,7 +71,9 @@ for u in xrange(len(news_urls)):
             
             # puts image into directory and downloads the image
             # for example, the first baseball article w ul be at ./news/0/0.jpg , 'wb' means write in binary 
-            with open( "./news/"+ str(u) + "/" + str(len(article_urls)-1) +".jpg", 'wb' ) as out_file:
+	    if not os.path.exists("./news/"+str(u)):
+    	        os.makedirs("./news/"+str(u)) 
+            with open( "./news/"+ str(u) + "/" + str(len(article_urls)) +".png", 'w+b' ) as out_file:
                 img = urllib2.urlopen(imgLink)
                 out_file.write( img.read() )
                 out_file.close()
@@ -105,5 +110,5 @@ articles = pd.DataFrame({
 
 #Writing the data to a file
 json_articles = articles.to_json()
-with open('./news/' + '/articles.json', 'w') as f:
+with open('./news/articles.json', 'w+') as f:
     f.write(json_articles)

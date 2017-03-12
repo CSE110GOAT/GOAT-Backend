@@ -27,7 +27,7 @@ articles_by_sport = []
 article_urls = []
 headlines = []
 article_dates = []
-for u in xrange(len(news_urls)-20): 
+for u in xrange(len(news_urls)): 
     url = news_urls[u]
     print "\nSport #" + str(u) + "\n"
 
@@ -44,7 +44,7 @@ for u in xrange(len(news_urls)-20):
                 
         # parse dates -- there are 6 sections per <TR> tag -- which is how the articles are divided
         if i % 7 == 1 :
-            print "date"
+          #  print "date"
             article_info.append(article_tags[i].get_text().replace("\t","").replace("\n",""))
             article_dates.append(article_tags[i].get_text().replace("\t","").replace("\n",""))
         
@@ -69,8 +69,8 @@ for u in xrange(len(news_urls)-20):
             aPage = requests.get( 'http://' + link )
             aSoup = BeautifulSoup(aPage.content, 'html.parser')
             
-            print "link: " + link
-            print "art: " + article_tags[i].get_text()
+         #   print "link: " + link
+         #   print "art: " + article_tags[i].get_text()
             
             # appends article url and headlines per sport
             article_urls.append(link)
@@ -85,6 +85,7 @@ for u in xrange(len(news_urls)-20):
                 imgLink = [ j for j in aSoup.select('#GlobalArticleContainer img') if j.has_attr('title') ][0]['src']
                 article_info.append(imgLink)
             except IndexError:
+                article_info.append("http://image.cdnllnwnl.xosnetwork.com/pics/400/107.gif")
                 continue
             
             news.append(article_info)
@@ -102,7 +103,7 @@ for element in news :
         img = urllib2.urlopen(element[3])
         out_file.write( img.read() )
         out_file.close()
-        print "image" + str(i)
+        #print "image" + str(i)
     i = i + 1
 
 # used to add to data frame (panda)
@@ -113,7 +114,9 @@ for element in news :
     temp.append( [ element[0].replace('/r',''),
     element[1].replace('\n',''), element[2] ] )
 
-articles = pd.DataFrame(temp)
+articles = pd.DataFrame({
+    "articles": temp
+})
 
 #Writing the data to a file
 json_articles = articles.to_json()

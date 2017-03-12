@@ -1,4 +1,4 @@
-# TEAM BACKEND
+#TEAM BACKEND
 # 
 # Descriptin: takes in a sports news archive url and grabs all the article 
 # headlines and urls for each sport 
@@ -45,8 +45,8 @@ for u in xrange(len(news_urls)):
         # parse dates -- there are 6 sections per <TR> tag -- which is how the articles are divided
         if i % 7 == 1 :
           #  print "date"
-            article_info.append(article_tags[i].get_text().replace("\t","").replace("\n",""))
-            article_dates.append(article_tags[i].get_text().replace("\t","").replace("\n",""))
+            article_info.append(article_tags[i].get_text().replace("\t","").replace("\n","").replace("\r",""))
+            article_dates.append(article_tags[i].get_text().replace("\t","").replace("\n","").replace("\r",""))
         
         # links are in a subtag of oldheadline
         # we search through the children to find if there's an href attribute
@@ -74,10 +74,10 @@ for u in xrange(len(news_urls)):
             
             # appends article url and headlines per sport
             article_urls.append(link)
-            headlines.append(article_tags[i].get_text())
+    #        headlines.append((article_tags[i].get_text()))
             
             article_info.append(link)
-            article_info.append(article_tags[i].get_text())
+            article_info.append((article_tags[i].get_text()).replace("\n",""))
             article_urls.append(link)
              
             # finds image url
@@ -91,7 +91,7 @@ for u in xrange(len(news_urls)):
             news.append(article_info)
              
             article_info = []
-sorted(news, key=lambda x: datetime.datetime.strptime(x[0], '\r%m/%d/%Y\r'))
+sorted(news, key=lambda x: datetime.datetime.strptime(x[0], '%m/%d/%Y'))
 
 # puts image into directory and downloads the image
 # for example, the first baseball article will be at ./news/0/0.jpg , 'wb' means write in binary

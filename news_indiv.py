@@ -109,9 +109,9 @@ for element in news :
 
 # Placing the data into a Pandas dataframe
 temp = []
-for index in xrange(len(news)) :
-    temp.append( [ news[index], news[index+1].replace('\n',''), news[index+3].replace('\r','') ] )
-    index = index + 4
+for element in news :
+    temp.append( [ element[0].replace('/r',''),
+    element[1].replace('\n',''), element[2] ] )
 
 articles = pd.DataFrame(temp)
 

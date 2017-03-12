@@ -5,8 +5,12 @@ Date: 3/2/17
 """
 
 import sys
-sys.path.insert(0, './lib')
 import requests
+import requests_toolbelt.adapters.appengine
+
+# Use the App Engine Requests adapter. This makes sure that Requests uses
+# URLFetch.
+requests_toolbelt.adapters.appengine.monkeypatch()
 from bs4 import BeautifulSoup
 import bs4
 import pandas as pd
@@ -15,7 +19,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
+from geopy.geocoders import Nominatim
+locator = Nominatim()
 
 page = requests.get("http://www.ucsdtritons.com/main/Schedule.dbml?DB_OEM_ID=5800&PAGEMO=-1&PAGEDIR=1")
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -56,7 +61,10 @@ opponent = [str(ot.get_text().replace("\n", "").replace("\t", "").replace("*", "
 # Scraping the location
 location_tag = scores_schedule.select(".location")
 location = [str(lt.get_text().replace("\n", "").replace("\t", "").decode('ascii', 'ignore')) for lt in location_tag]
-
+location.pop(0)
+geo = [ locator.geocode( ln ) for ln in location ]
+lat = [ l.latitude for l in geo ]
+long = [ l.longitude for l in geo ]
 #Debug statement
 #print location
 
@@ -103,15 +111,14 @@ for game in game_tag:
 date.pop(0)
 team.pop(0)
 opponent.pop(0)
-location.pop(0)
 time.pop(0)
 results.pop(0)
 
 # Grouping the information based on each game and not on date/team/opponent/location/time/results
 games = []
 for i in range (len(date)):
-    games.append([date[i], team[i], opponent[i], location[i], time[i],
-            results[i], recap[i], notes[i], stats[i]])
+    games.append([date[i], team[i], opponent[i], location[i], lat[i], 
+		  long[i], time[i], results[i], recap[i], notes[i], stats[i]])
 
 schedule = pd.DataFrame({
     "Games": games

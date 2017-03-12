@@ -5,3 +5,6 @@ threadsafe: yes
 handlers:
 - url: /
   static_dir: static
+
+- url: /news
+  script: news.py

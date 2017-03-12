@@ -1,5 +1,4 @@
 cron:
 - description: daily summary job
-  url: /news
-  target: beta
+  url: /cronjob
   schedule: every 24 hours

@@ -57,7 +57,7 @@ team = [str(tt.get_text().replace("\n", "").replace("\t", "").decode('ascii', 'i
 # Scraping the opponents. Removed the '*' which means that it is a conference game
 opponent_tag = scores_schedule.select(".opponent")
 #print opponent_tag[0].parent.parent
-opponent = [re.sub(r'\([^)]*\)', '', str(ot.get_text().replace("\n", "").replace("*", "").replace("\t", "").replace("*", "").decode('ascii', 'ignore'))) for ot in opponent_tag]
+opponent = [re.sub(r'\([^)]*\)', '', str(ot.get_text().replace("Cal State","CSU").replace("\n", "").replace("*", "").replace("\t", "").replace("*", "").decode('ascii', 'ignore'))) for ot in opponent_tag]
 
 
 # TODO sdfhenl2dsafadfslfajdskafdkjla;dsfjfdsaksafj;sfajfasdk
@@ -76,7 +76,7 @@ for o in xrange(len(opponent_tag)):
         tournament = scores_schedule.find("tr",{'schedule-id':
                 key}).get_text().replace("\n","").replace("\t","")
         # temp store old name and then append tournament/invitational in front
-        opponent[o] = tournament + " " + opponent[o]
+        opponent[o] = (tournament + " " + opponent[o]).replace("Cal State","CSU")
 	isTourn = 1
     tourn.append( isTourn ) 
 
@@ -224,8 +224,8 @@ for i in range (len(date)):
         gender = 0
     if team[i] in women or team[i][0] == 'W': 
         gender = 1
-    games.append([ date[i], team[i], opponent[i], location[i], time[i], results[i],
-                 recap[i], notes[i], stats[i], lat[i],lon[i], tourn[i], gender ])
+    games.append([ date[i], team[i], opponent[i], location[i], time[i], results[i].replace("https","http"),
+                   recap[i].replace("https","http"), notes[i].replace("https","http"), stats[i], lat[i],lon[i], tourn[i], gender ])
 
 schedule = pd.DataFrame({
     "Games": games

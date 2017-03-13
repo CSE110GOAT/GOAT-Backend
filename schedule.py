@@ -66,8 +66,10 @@ strings = ["Day One", "Day Two", "Day Three", "Day Four", "Day Five"]
 
 # goes through all the opponent tags, checks if it has any of the "Day" strings
 # then finds the first instance with the opponent's parent's id 
+tourn = []
 for o in xrange(len(opponent_tag)):
     oppo = opponent_tag[o]
+    isTourn = 0 
     if opponent[o] in strings:
         key = oppo.parent['schedule-id']
         # find returns an object (the whole chunk) -- we only want the name
@@ -75,7 +77,8 @@ for o in xrange(len(opponent_tag)):
                 key}).get_text().replace("\n","").replace("\t","")
         # temp store old name and then append tournament/invitational in front
         opponent[o] = tournament + " " + opponent[o]
-    
+	isTourn = 1
+    tourn.append( isTourn ) 
 
 
 """
@@ -155,7 +158,6 @@ for l in location :
         lon.append( oneLon )
         continue
 
-    quit()
     geo = getGeo( l )
     oneLat = geo.latitude
     oneLon = geo.longitude
@@ -164,16 +166,6 @@ for l in location :
 
     lat.append( oneLat )
     lon.append( oneLon )
-    """
-    if geo is None: 
-        l = re.sub(r'\([^)]*\)', '', l ) 
-        geo = getGeo( l )
-
-    if geo is not None:
-        oneLat = geo.latitude
-        oneLon = geo.longitude
-    """
-    
 
 # close file
 coordsIn.close()
@@ -183,9 +175,11 @@ coordsOut.close()
 time_tag = scores_schedule.select(".time")
 time = [str(timet.get_text().replace("\n", "").replace("\t", "").decode('ascii', 'ignore')) for timet in time_tag]
 
-# Scraping the results. Removed the Info - Schedule and Recap texts
+# Scraping the results. Removed unnecessary text and parentheticals 
 results_tag = scores_schedule.select(".results")
-results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
+results = [re.sub(r'\([^)]*\)', '', rt.get_text().replace("\n", "").replace("\t", "")
+	 .replace("Schedule - Info", "").replace("Info - Schedule", "")
+	 .replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
 
 # Scraping the recap
 prefix = "https://www.ucsdtritons.com"
@@ -223,8 +217,15 @@ games = []
 for i in range (len(date)):
     if ("/" in opponent[i]) or ("," in opponent[i]) or ("vs." in opponent[i]):
         continue
+    gender = -1
+    both = [ "Track & Field", "Swimming & Diving", "Cross Country" ]
+    women = [ "Softball" ]
+    if team[i] in both :
+        gender = 0
+    if team[i] in women or team[i][0] == 'W': 
+        gender = 1
     games.append([ date[i], team[i], opponent[i], location[i], time[i], results[i],
-                 recap[i], notes[i], stats[i], lat[i],lon[i] ])
+                 recap[i], notes[i], stats[i], lat[i],lon[i], tourn[i], gender ])
 
 schedule = pd.DataFrame({
     "Games": games

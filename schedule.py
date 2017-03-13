@@ -42,11 +42,28 @@ team = [str(tt.get_text().replace("\n", "").replace("\t", "").decode('ascii', 'i
 
 # Scraping the opponents. Removed the '*' which means that it is a conference game
 opponent_tag = scores_schedule.select(".opponent")
-print opponent_tag[0].parent.parent
+#print opponent_tag[0].parent.parent
 opponent = [re.sub(r'\([^)]*\)', '', str(ot.get_text().replace("\n", "").replace("*", "").replace("\t", "").replace("*", "").decode('ascii', 'ignore'))) for ot in opponent_tag]
+
 
 # TODO sdfhenl2dsafadfslfajdskafdkjla;dsfjfdsaksafj;sfajfasdk
 tournament = ""
+strings = ["Day One", "Day Two", "Day Three", "Day Four", "Day Five"]
+
+# goes through all the opponent tags, checks if it has any of the "Day" strings
+# then finds the first instance with the opponent's parent's id 
+for o in xrange(len(opponent_tag)):
+    oppo = opponent_tag[o]
+    if opponent[o] in strings:
+        key = oppo.parent['schedule-id']
+        # find returns an object (the whole chunk) -- we only want the name
+        tournament = scores_schedule.find("tr",{'schedule-id':
+                key}).get_text().replace("\n","").replace("\t","")
+        # temp store old name and then append tournament/invitational in front
+        opponent[o] = tournament + " " + opponent[o]
+    
+
+
 """
 for o in opponent:
 game_tag = scores_schedule.select(".gray-drop")
@@ -112,7 +129,7 @@ for l in location :
     oneLon = ""
     found = False
 
-    print l
+# print l
     for row in reader : 
         if row and l == row[0]:
             oneLat = row[1]

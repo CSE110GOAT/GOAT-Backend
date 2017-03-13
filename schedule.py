@@ -1,7 +1,21 @@
 """
 The Header that Josh never made :(
-Please comment me :( Jake, plz :( 
-Date: 3/2/17
+Please comment me :( Jake, plz :(
+This class returns a list of games, each game being a list containing
+the following in ascending order:
+0:date
+1:team
+2:opponent
+3:location
+4:time
+5:results
+6:recap
+7:notes
+8:stats
+9:lat
+10: lon
+
+Date: 3/12/17
 """
 
 import sys
@@ -174,7 +188,7 @@ results_tag = scores_schedule.select(".results")
 results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
 
 # Scraping the recap
-prefix = "www.ucsdtritons.com"
+prefix = "https://www.ucsdtritons.com"
 game_tag = scores_schedule.select(".gray-drop")
 recap = []
 notes = []
@@ -192,7 +206,7 @@ for game in game_tag:
             a_note = prefix + i['href']
         if i.has_attr('href') and 'Stats' in i.get_text() and 'Live' not in \
             i.get_text():
-            a_stat = prefix + i['href']
+            a_stat = i['href']
     recap.append(a_recap)
     notes.append(a_note)
     stats.append(a_stat)
@@ -209,8 +223,8 @@ games = []
 for i in range (len(date)):
     if ("/" in opponent[i]) or ("," in opponent[i]) or ("vs." in opponent[i]):
         continue
-    games.append([date[i], team[i], opponent[i], location[i], lat[i], lon[i], 
-                  time[i], results[i], recap[i], notes[i], stats[i]])
+    games.append([ date[i], team[i], opponent[i], location[i], time[i], results[i],
+                 recap[i], notes[i], stats[i], lat[i],lon[i] ])
 
 schedule = pd.DataFrame({
     "Games": games

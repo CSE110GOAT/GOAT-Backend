@@ -95,7 +95,6 @@ for u in xrange(len(schedule_urls)):
 
     # Get Coordinates
     # remove location header
-    #location.pop(0)
 
     # Scraping the time
     time_tag = scores_schedule.select(".time")
@@ -104,36 +103,13 @@ for u in xrange(len(schedule_urls)):
     # Scraping the results. Removed the Info - Schedule and Recap texts
     results_tag = scores_schedule.select(".results")
     results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
-    # Scraping the recap
-    prefix = "https://www.ucsdtritons.com"
-    game_tag = scores_schedule.select(".gray-drop")
-    recap = []
-    notes = []
-    stats = []
-    for game in game_tag:
-        a_recap = ""
-        a_note = ""
-        a_stat = ""
-        for i in game:
-            if type(i) is bs4.element.NavigableString:
-                continue
-            if i.has_attr('href') and 'Recap' in i.get_text():
-                a_recap = prefix + i['href']
-            if i.has_attr('href') and 'Notes' in i.get_text():
-                a_note = prefix + i['href']
-            if i.has_attr('href') and 'Stats' in i.get_text() and 'Live' not in \
-                i.get_text():
-                a_stat = i['href']
-        recap.append(a_recap)
-        notes.append(a_note)
-        stats.append(a_stat)
+    
     # remove headers of the table
     # Grouping the information based on each game and not on date/team/opponent/location/time/results
     for i in range (len(date)):
         if ("/" in opponent[i]) or ("," in opponent[i]) or ("vs." in opponent[i]):
             continue
-        games.append([ date[i], opponent[i], location[i], time[i], results[i],
-                 recap[i], notes[i], stats[i] ])
+        games.append([ date[i], opponent[i], location[i], time[i], results[i] ])
 
     schedule = pd.DataFrame({
         "Games": games

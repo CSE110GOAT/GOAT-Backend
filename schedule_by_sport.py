@@ -34,8 +34,7 @@ import re
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from urls import schedule_urls
-
-games = []
+by_sport = []
 for u in xrange(len(schedule_urls)):
     url = schedule_urls[u]
 
@@ -104,18 +103,21 @@ for u in xrange(len(schedule_urls)):
     results_tag = scores_schedule.select(".results")
     results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
     
+    games = []
     # remove headers of the table
     # Grouping the information based on each game and not on date/team/opponent/location/time/results
     for i in range (len(date)):
         if ("/" in opponent[i]) or ("," in opponent[i]) or ("vs." in opponent[i]):
             continue
         games.append([ date[i], opponent[i], location[i], time[i], results[i] ])
+    
+    by_sport.append(games)
 
-    schedule = pd.DataFrame({
-        "Games": games
-    })
+schedule = pd.DataFrame({
+    "Games": by_sport
+})
 
-    #Writing the data to a file
-    json_schedule = schedule.to_json()
-    with open('./static/schedule_individual.json', 'w') as f:
-        f.write(json_schedule)
+#Writing the data to a file
+json_schedule = schedule.to_json()
+with open('./static/schedule_individual.json', 'w') as f:
+    f.write(json_schedule)

@@ -65,7 +65,7 @@ for u in xrange(len(schedule_urls)):
     # Scraping the opponents. Removed the '*' which means that it is a conference game
     opponent_tag = scores_schedule.select(".opponent")
     #print opponent_tag[0].parent.parent
-    opponent = [re.sub(r'\([^)]*\)', '', str(ot.get_text().replace("\n", "").replace("*", "").replace("\t", "").replace("*", "").decode('ascii', 'ignore'))) for ot in opponent_tag]
+    opponent = [re.sub(r'\([^)]*\)', '', str(ot.get_text().replace("Cal State", "CSU").replace("\n", "").replace("*", "").replace("\t", "").replace("*", "").decode('ascii', 'ignore'))) for ot in opponent_tag]
 
 # TODO sdfhenl2dsafadfslfajdskafdkjla;dsfjfdsaksafj;sfajfasdk
     tournament = ""
@@ -81,7 +81,7 @@ for u in xrange(len(schedule_urls)):
             tournament = scores_schedule.find("tr",{'schedule-id':
                 key}).get_text().replace("\n","").replace("\t","")
             # temp store old name and then append tournament/invitational in front
-            opponent[o] = tournament + " " + opponent[o]
+	    opponent[o] = (tournament + " " + opponent[o]).replace("Cal State", "CSU")
     
 
 # TODO sdfhenl2dsafadfslfajdskafdkjla;dsfjfdsaksafj;sfajfasdk
@@ -102,7 +102,7 @@ for u in xrange(len(schedule_urls)):
 
     # Scraping the results. Removed the Info - Schedule and Recap texts
     results_tag = scores_schedule.select(".results")
-    results = [str(rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
+    results = [re.sub(r'\([^)]*\)', '', rt.get_text().replace("\n", "").replace("\t", "").replace("Schedule - Info", "").replace("Info - Schedule", "").replace("Recap", "").decode('ascii', 'ignore')) for rt in results_tag]
     
     # remove headers of the table
     # Grouping the information based on each game and not on date/team/opponent/location/time/results

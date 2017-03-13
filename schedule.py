@@ -34,8 +34,7 @@ import re
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-page =
-requests.get("http://www.ucsdtritons.com/main/Schedule.dbml?DB_OEM_ID=5800&PAGEMO=0&PAGEDIR=1")
+page = requests.get("http://www.ucsdtritons.com/main/Schedule.dbml?DB_OEM_ID=5800&PAGEMO=0&PAGEDIR=1")
 soup = BeautifulSoup(page.content, 'html.parser')
 page.status_code
 

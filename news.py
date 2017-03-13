@@ -1,6 +1,6 @@
-#TEAM BACKEND
+# TEAM BACKEND
 # 
-# Descriptin: takes in a sports news archive url and grabs all the article 
+# Description: takes in a sports news archive url and grabs all the article 
 # headlines and urls for each sport 
 # 
 # Structure: [ [ [article_urls], [headlines], [article_dates] ], ...]
@@ -8,7 +8,7 @@
 # Each sport has 2 arrays
 
 import sys
-#sys.path.insert(0, './lib')
+sys.path.insert(0, './lib')
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -17,19 +17,15 @@ import io
 import json
 from urls import news_urls
 import urllib2
-import datetime
 
 news = []
 dataframes = []
 
 articles_by_sport = []
 
-article_urls = []
-headlines = []
-article_dates = []
 for u in xrange(len(news_urls)): 
     url = news_urls[u]
-    print "\nSport #" + str(u) + "\n"
+    #print "\nSport #" + str(u) + "\n"
 
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -37,16 +33,13 @@ for u in xrange(len(news_urls)):
     # gets all oldheadline
     article_tags = soup.select(".oldheadline")
     
-    article_info = []
+    article_urls = []
+    headlines = []
+    article_dates = []
+
     # for every article archive, it stores all the individual article links,
     # headlines, and article dates
     for i in xrange(len(article_tags)):
-                
-        # parse dates -- there are 6 sections per <TR> tag -- which is how the articles are divided
-        if i % 7 == 1 :
-          #  print "date"
-            article_info.append(article_tags[i].get_text().replace("\t","").replace("\n","").replace("\r",""))
-            article_dates.append(article_tags[i].get_text().replace("\t","").replace("\n","").replace("\r",""))
         
         # links are in a subtag of oldheadline
         # we search through the children to find if there's an href attribute
@@ -60,7 +53,7 @@ for u in xrange(len(news_urls)):
             cont = False
         
         if cont : 
-            
+            #print link
             if len(article_urls) != 0  and link == article_urls[len(article_urls)-1]:
                 continue
             
@@ -69,53 +62,49 @@ for u in xrange(len(news_urls)):
             aPage = requests.get( 'http://' + link )
             aSoup = BeautifulSoup(aPage.content, 'html.parser')
             
-         #   print "link: " + link
-         #   print "art: " + article_tags[i].get_text()
-            
-            # appends article url and headlines per sport
-            article_urls.append(link)
-    #        headlines.append((article_tags[i].get_text()))
-            
-            article_info.append(link)
-            article_info.append((article_tags[i].get_text()).replace("\n",""))
-            article_urls.append(link)
-             
             # finds image url
             try :
                 imgLink = [ j for j in aSoup.select('#GlobalArticleContainer img') if j.has_attr('title') ][0]['src']
-                article_info.append(imgLink)
             except IndexError:
-                article_info.append("http://image.cdnllnwnl.xosnetwork.com/pics/400/107.gif")
                 continue
             
-            news.append(article_info)
-             
-            article_info = []
-sorted(news, key=lambda x: datetime.datetime.strptime(x[0], '%m/%d/%Y'))
+            # puts image into directory and downloads the image
+            # for example, the first baseball article w ul be at ./news/0/0.jpg , 'wb' means write in binary 
+	    if not os.path.exists("./static/news/"):
+    	        os.makedirs("./static/news/") 
+            with open( "./static/news/" + str(len(article_urls)) +".png", 'w+b' ) as out_file:
+                img = urllib2.urlopen(imgLink)
+                out_file.write( img.read() )
+                out_file.close()
+            
+            # appends article url and headlines per sport
+            article_urls.append(link)
+            headlines.append(article_tags[i].get_text())
 
-# puts image into directory and downloads the image
-# for example, the first baseball article will be at ./news/0/0.jpg , 'wb' means write in binary
-if not os.path.exists("./static/news/"):
-    os.makedirs("./static/news")
-i = 0
-for element in news :
-    with open( "./static/news/" + str(i) +".png", 'w+b' ) as out_file:
-        img = urllib2.urlopen(element[3])
-        out_file.write( img.read() )
-        out_file.close()
-        #print "image" + str(i)
-    i = i + 1
 
-# used to add to data frame (panda)
+        # parse dates -- there are 6 sections per <TR> tag -- which is how the articles are divided
+        if i % 7 == 1 and len(article_urls) == len(article_dates) :
+            article_dates.append(article_tags[i].get_text().replace("\t","").replace("\n",""))
+
+    
+    # append all the lists into a single list
+    per_sport = []
+    per_sport.append(article_urls)
+    per_sport.append(headlines)
+    per_sport.append(article_dates)
+
+    news.append(per_sport)
+
+    # used to add to data frame (panda)
+    temp = []
+    for index in xrange(len(article_urls)) :
+        temp.append( [ article_urls[index], headlines[index].replace('\n',''), article_dates[index].replace('\r','') ] ) 
+
+    articles_by_sport.append(temp)
 
 # Placing the data into a Pandas dataframe
-temp = []
-for element in news :
-    temp.append( [ element[0].replace('/r',''),
-    element[1].replace('\n',''), element[2] ] )
-
 articles = pd.DataFrame({
-    "articles": temp
+    "articles": articles_by_sport
 })
 
 #Writing the data to a file

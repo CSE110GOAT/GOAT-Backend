@@ -95,7 +95,9 @@ roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2334&SPSID=
 roster_urls.append("http://www.ucsdtritons.com/SportSelect.dbml?SPID=2549&SPSID=31947&DB_OEM_ID=5800")
 
 # NEWS
-
+# The link to the news for ALL sports, showing the first 50
+news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?ROWS_ACROSS=50")
+'''
 # 0 -- men's baseball
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=29805&SPID=2331&DB_LANG=C&DB_OEM_ID=5800")
 # 1 -- men's basketball
@@ -143,7 +145,7 @@ news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=93286&SPID
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31804&SPID=2334&DB_LANG=C&DB_OEM_ID=5800")
 # 22 -- women's water polo
 news_urls.append("http://www.ucsdtritons.com/SportArchives.dbml?SPSID=31805&SPID=2549&DB_LANG=C&DB_OEM_ID=5800")
-
+'''
 # STATS
 
 # 0 -- men's baseball

@@ -1,6 +1,5 @@
 """
-The Header that Josh never made :(
-Please comment me :( Jake, plz :(
+Author: Joshua Kwa
 This class returns a list of games, each game being a list containing
 the following in ascending order:
 0:date
